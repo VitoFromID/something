@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
 // ── CONFIG ───────────────────────────────────────────────
-const UNLOCK_DATE = new Date('2026-09-12T00:00:00');
+const UNLOCK_DATE = new Date(Date.now = + 5000);
 
 // ── DOM REFS ─────────────────────────────────────────────
 const lockedScreen   = document.getElementById('locked-screen');
