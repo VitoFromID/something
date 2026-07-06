@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Riska 🎂</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- LOCKED SCREEN -->
+  <div id="locked-screen">
+    <canvas id="locked-particles"></canvas>
+    <div class="lock-content">
+      <div class="lock-icon">🔒</div>
+      <h1 class="lock-title">Ada sesuatu untukmu...</h1>
+      <p class="lock-subtitle">Halaman ini akan terbuka pada</p>
+      <div class="lock-date">12 September 2026</div>
+      <div class="countdown" id="countdown">
+        <div class="count-box"><span id="days">00</span><label>Hari</label></div>
+        <div class="count-box"><span id="hours">00</span><label>Jam</label></div>
+        <div class="count-box"><span id="minutes">00</span><label>Menit</label></div>
+        <div class="count-box"><span id="seconds">00</span><label>Detik</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIRTHDAY PAGE -->
+  <div id="birthday-page" class="hidden">
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">12 September 2026</p>
+        <h1 class="title-main">Happy Birthday</h1>
+        <h2 class="title-name">Riska</h2>
+        <div class="petal-divider">✦ ✿ ✦</div>
+      </div>
+    </div>
+
+    <main class="letter-section">
+      <article class="letter-card">
+        <div class="letter-header">
+          <span class="letter-tag">Sebuah surat kecil</span>
+        </div>
+        <div class="letter-body">
+          <p class="greeting">Selamat ulang tahun, Riska</p>
+
+          <p>Hai Riska...</p>
+
+          <p>Aku nggak tahu kamu bakal pernah baca ini atau enggak, tapi aku cuma mau jujur sedikit di sini.</p>
+
+          <p>Aku pernah kenal kamu, dan itu bukan hal yang biasa buat aku. Kamu cantik, bahkan sangat cantik, tapi bukan cuma itu yang aku ingat dari kamu.</p>
+
+          <p>Aku masih ingat kamu suka lagu <em>"Blue"</em> dari Young Kai. Entah kenapa tiap aku dengar lagu itu lagi, rasanya kayak semua kenangan yang pernah ada jadi pelan-pelan muncul lagi di kepala aku.</p>
+
+          <p>Kita mungkin sudah tidak bersama lagi sekarang, dan aku sudah terima itu. Aku nggak mau maksa apa pun lagi, aku cuma pengen kamu tahu kalau kamu pernah berarti buat aku.</p>
+
+          <p>Aku nggak nyesel pernah kenal kamu, Riska.</p>
+
+          <div class="letter-divider">— ♡ —</div>
+
+          <p>Dan di hari ulang tahun kamu ini, aku cuma mau kamu tahu satu hal: <strong>aku benar-benar berharap kamu bahagia.</strong> Bukan bahagia yang sebentar, tapi yang tenang dan bertahan lama.</p>
+
+          <p>Kalau hidup lagi terasa berat, aku cuma mau kamu ingat satu hal sederhana yang pernah aku dengar dari lagu-lagu Hindia: bahwa nggak apa-apa kalau kamu lagi nggak baik-baik saja. Kamu nggak harus selalu kuat, nggak harus selalu terlihat baik di mata orang lain. Kamu cuma perlu terus jalan pelan-pelan, satu hari demi satu hari.</p>
+
+          <p>Semoga kamu bahagia di mana pun kamu sekarang, dengan siapa pun kamu nanti, atau bahkan sendirian sekalipun. Aku harap kamu tetap jadi kamu yang aku kenal dulu, yang aku pernah kagumi dari jauh.</p>
+
+          <p class="thanks">Terima kasih sudah pernah jadi bagian dari hidup aku.</p>
+
+          <p class="signature">— Vito</p>
+
+          <!-- SPOTIFY PLAYER -->
+          <div class="spotify-wrap">
+            <p class="spotify-label">🎵 lagu yang selalu aku inget dari kamu</p>
+            <iframe
+              src="https://open.spotify.com/embed/track/3be9ACTxtcL6Zm4vJRUiPG"
+              width="100%" height="80" frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy" style="border-radius:12px;">
+            </iframe>
+          </div>
+
+          <!-- FORM KIRIM PESAN -->
+          <div class="message-section">
+            <div class="msg-divider">✦</div>
+            <p class="message-intro">kalau kamu mau bilang sesuatu,<br>aku dengerin 🤍</p>
+            <textarea id="msg-input" class="msg-input" placeholder="Tulis pesanmu di sini..." rows="4" maxlength="500"></textarea>
+            <div class="char-count"><span id="char-left">500</span> karakter tersisa</div>
+            <button id="send-btn" class="send-btn">Kirim Pesan</button>
+            <p id="send-status" class="send-status"></p>
+          </div>
+
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>🎂 Happy Birthday, Riska 🎂</p>
+    </footer>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

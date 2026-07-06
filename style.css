@@ -1,0 +1,477 @@
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --rose:        #D4748E;
+  --rose-light:  #F2B8C6;
+  --rose-pale:   #FDE8EF;
+  --blush:       #FAF0F3;
+  --mauve:       #7C4A5C;
+  --mauve-dark:  #4B2336;
+  --gold:        #C9956A;
+  --cream:       #FFF8F9;
+  --text-dark:   #2E1520;
+  --text-mid:    #6B3F52;
+  --text-soft:   #A07080;
+
+  --ff-display:  'Playfair Display', Georgia, serif;
+  --ff-script:   'Dancing Script', cursive;
+  --ff-body:     'Lato', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--text-dark);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =============================================
+   LOCKED SCREEN
+   ============================================= */
+#locked-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(145deg, #1a0a10 0%, #2e1220 50%, #1a0a10 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#locked-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lock-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  animation: fadeInUp 1s ease both;
+}
+
+.lock-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.lock-title {
+  font-family: var(--ff-script);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--rose-light);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 30px rgba(212,116,142,0.6);
+}
+
+.lock-subtitle {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lock-date {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.count-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212,116,142,0.3);
+  border-radius: 12px;
+  padding: 0.9rem 1.4rem;
+  min-width: 70px;
+  backdrop-filter: blur(6px);
+}
+
+.count-box span {
+  font-family: var(--ff-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--rose-light);
+  line-height: 1;
+}
+
+.count-box label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.3rem;
+}
+
+/* =============================================
+   BIRTHDAY PAGE
+   ============================================= */
+#birthday-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #2e1220 0%, #4b2336 40%, #7c4a5c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  will-change: min-height, height;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212,116,142,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1.2s ease both;
+  will-change: transform, opacity;
+  transition: none;
+}
+
+.eyebrow {
+  font-family: var(--ff-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose-light);
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.title-main {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 4px 40px rgba(212,116,142,0.4);
+  margin-bottom: 0.2em;
+}
+
+.title-name {
+  font-family: var(--ff-script);
+  font-size: clamp(3rem, 12vw, 8rem);
+  color: var(--rose-light);
+  text-shadow: 0 0 60px rgba(212,116,142,0.7);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.petal-divider {
+  font-size: 1.3rem;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  opacity: 0.7;
+}
+
+/* =============================================
+   LETTER SECTION
+   ============================================= */
+.letter-section {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 1.5rem 6rem;
+  display: flex;
+  justify-content: center;
+  background: var(--blush);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(212,116,142,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(201,149,106,0.06) 0%, transparent 50%);
+}
+
+.letter-card {
+  background: #fff;
+  border-radius: 20px;
+  max-width: 680px;
+  width: 100%;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.8rem, 7vw, 4.5rem);
+  box-shadow:
+    0 4px 24px rgba(124,74,92,0.08),
+    0 20px 60px rgba(124,74,92,0.06);
+  border-top: 4px solid var(--rose);
+  position: relative;
+  /* reveal on scroll — starts hidden */
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.letter-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-card::before {
+  content: '♡';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #fff;
+  color: var(--rose);
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  line-height: 1;
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.letter-tag {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  border: 1px solid var(--rose-light);
+  border-radius: 100px;
+  padding: 0.35rem 1.1rem;
+}
+
+.letter-body {
+  font-size: clamp(0.95rem, 2.5vw, 1.08rem);
+  color: var(--text-dark);
+  line-height: 2;
+}
+
+.letter-body p {
+  margin-bottom: 1.4em;
+}
+
+.greeting {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 4vw, 2rem) !important;
+  color: var(--mauve) !important;
+  text-align: center;
+  margin-bottom: 2rem !important;
+}
+
+.letter-body em {
+  color: var(--rose);
+  font-style: italic;
+}
+
+.letter-body strong {
+  color: var(--mauve-dark);
+  font-weight: 700;
+}
+
+.letter-divider {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--rose);
+  letter-spacing: 0.5em;
+  margin: 2rem 0;
+  opacity: 0.6;
+}
+
+.thanks {
+  font-family: var(--ff-display);
+  font-style: italic;
+  color: var(--mauve) !important;
+  font-size: 1.1rem !important;
+}
+
+.signature {
+  font-family: var(--ff-script);
+  font-size: 1.8rem !important;
+  color: var(--rose) !important;
+  text-align: right;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  background: var(--mauve-dark);
+  color: rgba(255,255,255,0.55);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.12); }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 480px) {
+  .countdown { gap: 0.75rem; }
+  .count-box { padding: 0.7rem 1rem; min-width: 58px; }
+  .count-box span { font-size: 1.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* =============================================
+   SPOTIFY PLAYER
+   ============================================= */
+.spotify-wrap {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rose-pale);
+}
+
+.spotify-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  margin-bottom: 0.8rem !important;
+  text-align: center;
+}
+
+/* =============================================
+   FORM KIRIM PESAN
+   ============================================= */
+.message-section {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.msg-divider {
+  font-size: 1rem;
+  color: var(--rose-light);
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5em;
+}
+
+.message-intro {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1.1rem !important;
+  color: var(--mauve) !important;
+  margin-bottom: 1.2rem !important;
+  line-height: 1.7 !important;
+}
+
+.msg-input {
+  width: 100%;
+  border: 1.5px solid var(--rose-light);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--rose-pale);
+  resize: none;
+  outline: none;
+  transition: border-color 0.25s;
+  line-height: 1.7;
+}
+
+.msg-input:focus {
+  border-color: var(--rose);
+  background: #fff;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  margin: 0.4rem 0 1rem;
+}
+
+.send-btn {
+  background: linear-gradient(135deg, var(--rose) 0%, var(--mauve) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.send-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.send-btn:active { transform: scale(0.97); }
+.send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.send-status {
+  margin-top: 1rem !important;
+  font-size: 0.9rem !important;
+  color: var(--rose) !important;
+  min-height: 1.4em;
+}
