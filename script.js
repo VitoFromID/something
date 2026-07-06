@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
 // ── CONFIG ───────────────────────────────────────────────
-const UNLOCK_DATE = new Date(Date.now() + 3000);
+const UNLOCK_DATE = new Date('2026-09-12T00:00:00');
 
 // ── DOM REFS ─────────────────────────────────────────────
 const lockedScreen   = document.getElementById('locked-screen');
@@ -131,11 +131,20 @@ function initMessageForm() {
     status.textContent  = '';
 
     try {
-      await addDoc(collection(db, 'messages'), {
+      const sendPromise = addDoc(collection(db, 'messages'), {
         text,
         from: 'Riska',
         createdAt: serverTimestamp()
       });
+
+      // Kalau lebih dari 8 detik gak ada respon, anggap timeout
+      // supaya tombol gak nge-hang selamanya dan errornya keliatan.
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('TIMEOUT: tidak ada respon dari server dalam 8 detik')), 8000);
+      });
+
+      await Promise.race([sendPromise, timeoutPromise]);
+
       input.value          = '';
       charLeft.textContent = '500';
       status.textContent   = 'Pesanmu sudah terkirim 🤍';
@@ -147,7 +156,9 @@ function initMessageForm() {
       }, 4000);
     } catch (err) {
       console.error(err);
-      status.textContent  = 'Gagal kirim, coba lagi ya.';
+      // Tampilkan detail error langsung di halaman biar gampang didiagnosis dari HP
+      const code = err && err.code ? err.code : (err && err.message ? err.message : 'unknown error');
+      status.textContent  = `Gagal kirim (${code})`;
       sendBtn.disabled    = false;
       sendBtn.textContent = 'Kirim Pesan';
     }
@@ -230,4 +241,5 @@ function startBirthdayParticles() {
     requestAnimationFrame(loop);
   }
   loop();
-}
+     }
+                                                                       
